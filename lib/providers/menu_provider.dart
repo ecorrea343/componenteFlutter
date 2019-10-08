@@ -7,17 +7,19 @@ class _MenuProvider{
 
   List<dynamic> opciones = [];
   _MenuProvider(){
-    cargarData();
+    //cargarData();
   }
 
-  cargarData(){ 
-    rootBundle.loadString('data/menu_opts.json')
-    .then( (data) {
-        //Map dataMap = json.decode(data);
-      
-        print(data);
+  Future<List<dynamic>> cargarData() async{
 
-    });
+    final respuesta = await rootBundle.loadString('data/menu_opts.json');
+          
+        Map dataMap = json.decode( respuesta );
+        print   ( dataMap ['rutas'] );
+        opciones = dataMap['rutas'];
+                
+        return opciones;
+    
   }
 }
 
