@@ -11,7 +11,13 @@ class AlertPage extends StatelessWidget {
             title: Text('Alert Page'),
 
         ),
+        floatingActionButton: FloatingActionButton( //Creando un boton en alertpage.         
+          child: Icon(Icons.add_location),           //dando un icono .
+            onPressed: (){                           //Funcion de al ser presionado.
+            Navigator.pop(context);                 //el Navigator.pop permite viajar atras colocandole en este caso el "context"
+          },
 
+        ),
       ) ;
     }
 
