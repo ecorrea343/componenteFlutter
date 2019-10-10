@@ -1,6 +1,5 @@
 import 'package:componentes/src/pages/alert_page.dart';
-import 'package:componentes/src/pages/avatar_page.dart';
-import 'package:componentes/src/pages/home_page.dart';
+import 'package:componentes/src/routes/routes.dart';
 
 // packages hechos
 import 'package:flutter/material.dart';
@@ -17,11 +16,27 @@ class MyApp extends StatelessWidget {
       title: 'Componentes App',
       debugShowCheckedModeBanner: false,  
         //home: HomePage(),
+
+       
         initialRoute: '/',
-        routes: <String , WidgetBuilder>{
-          '/'         : (BuildContext context) => HomePage(),
-          '/alert'    : (BuildContext context) => AlertPage(),
-          '/avatar'   : (BuildContext context) => AvatarPage(),
+        routes: getApplicationRoutes(),
+         //Rutas dinamicas con Nombre    vide0 70
+        // routes: <String , WidgetBuilder>{
+        //   '/'         : (BuildContext context) => HomePage(),
+        //   '/alert'    : (BuildContext context) => AlertPage(),
+        //   '/avatar'   : (BuildContext context) => AvatarPage(),
+
+        
+        //Rutas generalizadas dinamicamente y archivod e rutas independientes video 71
+        onGenerateRoute: (RouteSettings settings ){
+
+            print('ruta llamada ${settings.name} '); //Probar en el debug a que ruta esta llamando 
+
+            return MaterialPageRoute(
+
+              builder: (BuildContext context) => AlertPage()
+
+            );
 
         },
              
