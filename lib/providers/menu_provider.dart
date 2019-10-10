@@ -23,4 +23,4 @@ class _MenuProvider{
   }
 }
 
-final menuProvider = new _MenuProvider(); //estoi ejecuta las variable privadas
+final menuProvider = new _MenuProvider(); //esto ejecuta las variable privadas
