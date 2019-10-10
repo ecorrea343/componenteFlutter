@@ -16,7 +16,11 @@ class CardPage extends StatelessWidget {
         body: ListView(
               padding: EdgeInsets.all(10.0),
               children: <Widget>[
-                    _cardTipo1()
+                    _cardTipo1(),
+                    SizedBox(
+                        height: 30.0,
+                    ),
+                    _cardTipo2()
               ],          
         ) ,//Como queremos crear muchas tarjetas creamos un ListView
       );
@@ -53,6 +57,35 @@ class CardPage extends StatelessWidget {
       );
 
     }
+   /*
+   *   Extrato de codigo de el Video 73 Image y FadeIn Image 
+   * 
+   *  */
+    Widget _cardTipo2(){
 
+        return Card(
+          child: Column(
+            children: <Widget>[
+              
+             FadeInImage(
+                image: NetworkImage('https://iso.500px.com/wp-content/uploads/2014/07/big-one.jpg'), //descargar una imagen de una url
+                placeholder: AssetImage('assets/jar-loading.gif'),
+                fadeInDuration: Duration( milliseconds: 200 ),
+                height: 300.0,
+                fit: BoxFit.cover,
+             ),
+              
+              
+              // Image(
+              //   image: NetworkImage('https://iso.500px.com/wp-content/uploads/2014/07/big-one.jpg'), //descargar una imagen de una url
+              // ),
+              Container(
+                padding: EdgeInsets.all(10.0),
+                child: Text('Este es un mensaje'),
+              )
+            ],
+          ),
+        );
+    }
 
 }
