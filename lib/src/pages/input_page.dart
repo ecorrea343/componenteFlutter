@@ -9,7 +9,11 @@ class _InputPageState extends State<InputPage> {
 
   String _nombre    = '';
   String _email     = '';
-  String _password  = ''; 
+  //String _password  = ''; 
+  String _fecha     = '';
+
+  TextEditingController _inputFieldController = new TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +29,8 @@ class _InputPageState extends State<InputPage> {
           _crearEmail(), //Modificaciones hecahs en el video 80
           Divider(),
           _crearPassword(),
+          Divider(),
+          _crearFecha(context ),
           Divider(),
           _crearPersona(), //Modificaciones hechas en el video 79
                   ],
@@ -111,7 +117,70 @@ class _InputPageState extends State<InputPage> {
               suffixIcon: Icon(Icons.lock_open),
               icon: Icon(Icons.lock)
           ),
-            onChanged: (valor) => setState(() {  _password = valor; }) 
+            //onChanged: (valor) => setState(() {  _password = valor; }) 
         );
     }
+
+    //Metodo creado en el video numepr 81
+
+    Widget _crearFecha(BuildContext context){
+
+        return TextField(
+          //autofocus: true,
+          //obscureText: true,
+          enableInteractiveSelection: false,
+          controller: _inputFieldController,
+          decoration: InputDecoration(
+              border: OutlineInputBorder(
+
+                borderRadius: BorderRadius.circular(20.0),
+
+              ),
+              //counter: Text('Letra ${_nombre.length}'),
+              hintText: 'Fecha de Nacimiento',
+              labelText: 'Fecha de Nacimiento',
+              //helperText: 'Solo es el nombre ',
+              suffixIcon: Icon(Icons.perm_contact_calendar),
+              icon: Icon(Icons.calendar_today)
+          ),
+            //onChanged: (valor) => setState(() {  _fecha = valor; }) 
+            onTap: (){
+
+                FocusScope.of(context).requestFocus(new FocusNode());
+                _selectDate( context );
+
+            },
+        
+        
+        
+        );
+
+    }
+  //Metodo hecho en el video 81 DatePicker
+_selectDate (BuildContext context) async {
+
+    DateTime picked = await showDatePicker(
+
+         context     : context,
+         initialDate : new DateTime.now(),
+         firstDate   : new DateTime(2019),
+         lastDate    : new DateTime(2025),
+
+    );
+
+    if ( picked != null) {
+
+      setState(() {
+        _fecha = picked.toString();
+        _inputFieldController.text = _fecha;
+      }); 
+    
+    }
+
+
+   
+
+}
+
+
 }
