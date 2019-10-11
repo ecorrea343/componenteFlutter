@@ -12,6 +12,10 @@ class _InputPageState extends State<InputPage> {
   //String _password  = ''; 
   String _fecha     = '';
 
+  String _opcionSeleccionada = 'Volar';
+
+  List <String> _poderes = ['Volar','Rayos X' ,'Super Aliento'];
+
   TextEditingController _inputFieldController = new TextEditingController();
 
 
@@ -31,6 +35,8 @@ class _InputPageState extends State<InputPage> {
           _crearPassword(),
           Divider(),
           _crearFecha(context ),
+          Divider(),
+          _crearDropdown(), //Modificacion creada en el video numero 83
           Divider(),
           _crearPersona(), //Modificaciones hechas en el video 79
                   ],
@@ -72,6 +78,7 @@ class _InputPageState extends State<InputPage> {
         return ListTile(
             title: Text('Nombre es: $_nombre'),
             subtitle: Text('Email : $_email'),
+            trailing: Text(_opcionSeleccionada),
             
         );
     }
@@ -178,10 +185,34 @@ _selectDate (BuildContext context) async {
     
     }
 
+    }
+    
+    //modificacion creada en el video 83 - DropDown y DropDownMenu
+    List<DropdownMenuItem<String>> getOpcionesDropdown (){
 
-   
+        List<DropdownMenuItem<String>> lista = new List();
 
-}
+        _poderes.forEach((poder){
+            
+            lista.add( DropdownMenuItem(
+                child: Text(poder),
+                value: poder,
+            ));
 
-
+        });
+        return lista;
+    }
+//modificacion de el video numero 83 de Dropdown y DropdownMenuItem
+    Widget _crearDropdown(){
+      
+        return DropdownButton(
+          value: _opcionSeleccionada,
+            items: getOpcionesDropdown(),
+            onChanged: (opt){
+              setState(() {
+                _opcionSeleccionada = opt;
+              });
+            },
+        );
+    }
 }
