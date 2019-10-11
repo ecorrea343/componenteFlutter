@@ -29,6 +29,8 @@ class CardPage extends StatelessWidget {
     Widget _cardTipo1(){
 
       return Card(
+          elevation: 5.0, // para crear sombra a los lados
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)), //es para editar las puntas o bordes del card
           child: Column(
             children: <Widget>[
               ListTile(
@@ -62,8 +64,8 @@ class CardPage extends StatelessWidget {
    * 
    *  */
     Widget _cardTipo2(){
-
-        return Card(
+        
+        final card = Card(
           child: Column(
             children: <Widget>[
               
@@ -86,6 +88,22 @@ class CardPage extends StatelessWidget {
             ],
           ),
         );
+
+        return Container(
+         
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+            color: Colors.red
+
+          ),
+        
+            child: ClipRect(
+            //borderRadius: BorderRadius.circular(20.0),
+            child: card,
+            
+          ),
+        );
+
     }
 
 }
