@@ -165,6 +165,7 @@ _selectDate (BuildContext context) async {
          initialDate : new DateTime.now(),
          firstDate   : new DateTime(2019),
          lastDate    : new DateTime(2025),
+         locale: Locale('es','ES'),    //cambios de el video numero 82 Cambiar el idioma de pICKER
 
     );
 
