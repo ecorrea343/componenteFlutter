@@ -204,15 +204,26 @@ _selectDate (BuildContext context) async {
     }
 //modificacion de el video numero 83 de Dropdown y DropdownMenuItem
     Widget _crearDropdown(){
-      
-        return DropdownButton(
-          value: _opcionSeleccionada,
-            items: getOpcionesDropdown(),
-            onChanged: (opt){
-              setState(() {
-                _opcionSeleccionada = opt;
-              });
-            },
+
+        return Row(
+
+            children: <Widget>[
+
+              Icon(Icons.select_all),
+              SizedBox(width: 30.0,),
+              Expanded(
+                   child: DropdownButton(
+                  value: _opcionSeleccionada,
+                  items: getOpcionesDropdown(),
+                  onChanged: (opt){  setState(() {  _opcionSeleccionada = opt; });},
+        
+                ),
+              ) 
+           ],
         );
+
+
+
+         
     }
 }
