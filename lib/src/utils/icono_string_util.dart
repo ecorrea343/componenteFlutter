@@ -8,6 +8,7 @@ final _icon = <String, IconData>{
     'accessibility' : Icons.accessibility,
     'folder_open'   : Icons.folder_open,
     'donut_large'   : Icons.donut_large,//modificacion de video 78
+    'input'         : Icons.input,//modificacion de video 79
 
 
 };
