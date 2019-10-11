@@ -17,10 +17,21 @@ class CardPage extends StatelessWidget {
               padding: EdgeInsets.all(10.0),
               children: <Widget>[
                     _cardTipo1(),
-                    SizedBox(
-                        height: 30.0,
-                    ),
-                    _cardTipo2()
+                    SizedBox(    height: 30.0,  ),
+                    _cardTipo2(),
+                     SizedBox(    height: 30.0,  ),
+                    _cardTipo1(),
+                    SizedBox(    height: 30.0,  ),
+                    _cardTipo2(),
+                     SizedBox(    height: 30.0,  ),
+                    _cardTipo1(),
+                    SizedBox(    height: 30.0,  ),
+                    _cardTipo2(),
+                     SizedBox(    height: 30.0,  ),
+                    _cardTipo1(),
+                    SizedBox(    height: 30.0,  ),
+                    _cardTipo2(),
+                    
               ],          
         ) ,//Como queremos crear muchas tarjetas creamos un ListView
       );
@@ -92,13 +103,22 @@ class CardPage extends StatelessWidget {
         return Container(
          
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20.0),
-            color: Colors.red
+            borderRadius: BorderRadius.circular(40.0),
+            color: Colors.white,
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 10.0,
+                  spreadRadius: 2.0, //sombra de border radiums
+                  offset: Offset(2.0,10.0),
+              )
+
+            ]
 
           ),
         
-            child: ClipRect(
-            //borderRadius: BorderRadius.circular(20.0),
+            child: ClipRRect(
+            borderRadius: BorderRadius.circular(40.0),
             child: card,
             
           ),
