@@ -9,7 +9,8 @@ final _icon = <String, IconData>{
     'folder_open'   : Icons.folder_open,
     'donut_large'   : Icons.donut_large,//modificacion de video 78
     'input'         : Icons.input,//modificacion de video 79
-    'tune'          : Icons.tune//modificacion de el video 84 Slider
+    'tune'          : Icons.tune,//modificacion de el video 84 Slider
+    'list'          : Icons.list//modificacion de el video 86 Listview
 
 };
 
