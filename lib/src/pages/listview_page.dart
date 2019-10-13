@@ -18,7 +18,6 @@ class _ListaPageState extends State<ListaPage> {
   
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
      _agregar10();
 
@@ -53,25 +52,45 @@ class _ListaPageState extends State<ListaPage> {
   //elemenbto modificado en el video 86 
   Widget _crearLista(){
 
-    return ListView.builder(
-        controller: _scrollController,//elemento agregado en video 87
-        itemCount: _listanumeros.length,
-        itemBuilder: (BuildContext context , int index){
+    return RefreshIndicator(
 
-            final imagen = _listanumeros[index];
+          onRefresh: obtenerPagina1,
 
-          return FadeInImage(
+          child: ListView.builder(
+          controller: _scrollController,//elemento agregado en video 87
+          itemCount: _listanumeros.length,
+          itemBuilder: (BuildContext context , int index){
 
-            image: NetworkImage('https://picsum.photos/id/1/600/500/?image=$imagen'),
-            placeholder: AssetImage('assets/jar-loading.gif'),
-          
-          );
+              final imagen = _listanumeros[index];
 
-        },
+            return FadeInImage(
+
+              image: NetworkImage('https://picsum.photos/id/1/600/500/?image=$imagen'),
+              placeholder: AssetImage('assets/jar-loading.gif'),
+            
+            );
+
+          },
 
 
+      ),
     );
   }
+  //Elemento agregado en el video 89 Pull to Refreah
+  Future<Null> obtenerPagina1()async{
+
+      final duration = new Duration(seconds: 2);
+      new Timer(duration,(){
+
+      _listanumeros.clear();
+      _ultimoItem++;
+      _agregar10();
+
+      });
+
+      return Future.delayed(duration);
+  }
+
   //elemento creado en el video 87 Infinity Scrolling
   void _agregar10(){
 
