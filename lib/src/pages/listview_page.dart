@@ -7,7 +7,28 @@ class ListaPage extends StatefulWidget {
 
 class _ListaPageState extends State<ListaPage> {
 
-  List<int> _listanumeros = [10,23,38,42,53];
+
+  ScrollController _scrollController = new ScrollController();
+ //m en el video 87
+  List<int> _listanumeros = new List(); //[10,23,38,42,53];
+  int _ultimoItem = 0;
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+     _agregar10();
+
+     _scrollController.addListener((){
+
+       if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+         _agregar10();
+       }
+
+       print('Scroll!!!');
+
+     });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +39,18 @@ class _ListaPageState extends State<ListaPage> {
       body: _crearLista(),
     );
   }
+  //elemenbto modificado en el video 86 
   Widget _crearLista(){
 
     return ListView.builder(
-
+        controller: _scrollController,//elemento agregado en video 87
         itemCount: _listanumeros.length,
         itemBuilder: (BuildContext context , int index){
 
             final imagen = _listanumeros[index];
 
           return FadeInImage(
-            image: NetworkImage('https://picsum.photos/id/866/500/300/?image=$index'),
+            image: NetworkImage('https://picsum.photos/id/868/500/300/?image=$index'),
             placeholder: AssetImage('assets/jar-loading.gif'),
           );
 
@@ -36,5 +58,17 @@ class _ListaPageState extends State<ListaPage> {
 
 
     );
+  }
+  //elemento creado en el video 87 Infinity Scrolling
+  void _agregar10(){
+
+    for (var i = 1; i < 10; i++) {
+      _ultimoItem++;
+      _listanumeros.add( _ultimoItem);
+    }
+    setState(() {
+      
+    });
+
   }
 }
