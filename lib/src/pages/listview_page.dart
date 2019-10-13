@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class ListaPage extends StatefulWidget {
@@ -12,6 +14,7 @@ class _ListaPageState extends State<ListaPage> {
  //m en el video 87
   List<int> _listanumeros = new List(); //[10,23,38,42,53];
   int _ultimoItem = 0;
+  bool _isLoading = false;
   
   @override
   void initState() {
@@ -22,7 +25,9 @@ class _ListaPageState extends State<ListaPage> {
      _scrollController.addListener((){
 
        if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
-         _agregar10();
+         //_agregar10();
+          fetchData();
+
        }
 
        print('Scroll!!!');
@@ -36,7 +41,13 @@ class _ListaPageState extends State<ListaPage> {
       appBar: AppBar(
         title: Text('ListView'),
       ),
-      body: _crearLista(),
+      body:Stack(
+        children: <Widget>[
+            _crearLista(),
+            _crearLoading(),
+
+        ],
+      ) 
     );
   }
   //elemenbto modificado en el video 86 
@@ -72,5 +83,60 @@ class _ListaPageState extends State<ListaPage> {
       
     });
 
+  }
+
+  Future fetchData()async{
+
+      _isLoading = true;
+      setState(() {  build(context); });
+        
+        final duration = new Duration(seconds: 2);
+        return new Timer(duration, respuestaHTTP);
+  }
+
+  void respuestaHTTP(){
+
+      _isLoading = false;
+
+      _scrollController.animateTo(
+        _scrollController.position.pixels + 100,
+        curve: Curves.fastOutSlowIn,
+        duration: Duration(milliseconds: 250)
+      );
+
+      _agregar10();
+
+  }
+
+  Widget _crearLoading(){
+
+    if (_isLoading) {
+        return Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                   CircularProgressIndicator()
+              ],
+            ),
+            SizedBox(
+              height: 15.0,
+            )
+          ],
+        );
+                
+    }else{
+      return Container();
+    }
+
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _scrollController.dispose();
   }
 }
